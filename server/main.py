@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from Parse import Parse
+from database import Database
 import os
 
 
@@ -8,19 +9,6 @@ app = Flask(__name__)
 cors = CORS(app, origins = "*")
 
 
-# @app.route("/courses", methods = ["GET"])
-# def parseCourse():
-    
-#     pdf = Parse()
-#     pdf.parsePDF()
-    
-    
-#     return jsonify(
-#         {
-#             "courses" : pdf.courses
-#         }
-#     )
-    
 @app.route('/upload', methods = ["POST"] )
 def receive_pdf():
 
@@ -38,15 +26,34 @@ def receive_pdf():
         filename = file.filename
         
 
-        filepath = "E:\\Python Projects\\Advising Assist\\server\\"+ filename
+        filepath = os.getcwd()+"\\" + filename
         file.save(filepath)
         
         pdf = Parse()
-        pdf.parsePDF(filepath)
+        info = pdf.parsePDF(filepath)
         
+        if os.path.isfile(filepath):
+            os.remove(filepath)
+        
+        print(info)
+        
+        db = Database()
+        
+        db.put_student_info(info)
+        
+        courses_taken = db.courses_taken(info)
+        
+        courses_not_taken = db.courses_not_taken(info)
+
+
+
+
         return jsonify(
         {
-            "courses" : pdf.courses
+            "courses" : courses_taken,
+            'not_taken' : courses_not_taken,
+            'student_id' : info['id'],
+            'dept' : info['dept']
         }) 
         
     return jsonify({"error": "Invalid file type"}), 400

@@ -1,42 +1,86 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
+
+.notTaken {
+  position: absolute;
+  top: 10px;   /* Distance from the top */
+  right: 10px; /* Distance from the right */
+  width: 200px; /* Adjust width as needed */
+  background-color: rgb(29, 29, 29); /* Optional styling */
+  padding: 10px;
+  border-radius: 5px; /* Optional styling */
+  margin: 1rem;
+  justify-content: center;
+  flex: content;
+}
+
+.coursesTaken {
+  position: absolute;
+  top : 10px;
+  margin-left: 15px;
+  padding : 10px;
+  box-shadow: inset;
+  text-shadow: 4cqmax;
+
+}
+
+.pdfSubmit{
+
+  justify-content: center;
   text-align: center;
+  position: absolute;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+form {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+ /* Adjust this to move it down or up */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SubmitButton {
+  justify-content: center;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.ChooseFile{
+  color: black;
+
 }
 
-.card {
-  padding: 2em;
+.CustomFileUpload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #000000;  /* You can change the color here */
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-.read-the-docs {
-  color: #888;
+.CustomFileUpload:hover {
+    background-color: #555;  /* Hover effect */
+}
+
+/* Hide the default file input */
+input[type="file"] {
+    display: none;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #555;
 }
